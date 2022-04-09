@@ -1,9 +1,7 @@
-import React, { useState, useReducer } from 'react';
-import { myState, myReducer } from './ListaReducer';
-
+import useMeuHook from '../hooks/useMeuHook';
 
 export default function Lista() {
-    const [list, setList] = useReducer(myReducer, myState);
+    const [list, setList] = useMeuHook([]);
 
     function add() {
         setList({ type: 'add' });
@@ -21,10 +19,12 @@ export default function Lista() {
         <>
             <button onClick={add}>Add</button>
             <ul>
-                {list.map(item => (
-                    <li onClick={() => remove(item.id)} key={item.id}>{item.id}</li>
+                {list.map((item) => (
+                    <li onClick={() => remove(item.id)} key={item.id}>
+                        {item.id}
+                    </li>
                 ))}
             </ul>
         </>
-    )
+    );
 }
