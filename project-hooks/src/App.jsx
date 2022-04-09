@@ -1,14 +1,14 @@
 import './App.css';
 
 import ThemeProvider from './data/ThemeProvider';
-import Lista from './ui/Lista';
+import useOnlineStatus from './hooks/useOnlineStatus';
 
 function App() {
+    const isOnline = useOnlineStatus();
+
     return (
         <ThemeProvider>
-            <div className='App'>
-                <Lista />
-            </div>
+            <div>{isOnline ? 'Você está conectado' : 'Você desconectou'}</div>
         </ThemeProvider>
     );
 }
