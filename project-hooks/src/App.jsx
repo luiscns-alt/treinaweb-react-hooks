@@ -1,14 +1,14 @@
 import './App.css';
 
 import ThemeProvider from './data/ThemeProvider';
-import useOnlineStatus from './hooks/useOnlineStatus';
+import useLocalStorage from './hooks/seLocalStorage';
 
 function App() {
-    const isOnline = useOnlineStatus();
+    const [counter, setCounter] = useLocalStorage('counter', 1);
 
     return (
         <ThemeProvider>
-            <div>{isOnline ? 'Você está conectado' : 'Você desconectou'}</div>
+            <button onClick={() => setCounter(counter + 1)}>{counter}</button>
         </ThemeProvider>
     );
 }
