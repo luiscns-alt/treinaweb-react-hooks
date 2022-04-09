@@ -1,36 +1,22 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 
 import ThemeProvider from './data/ThemeProvider';
-import useOnScreen from './hooks/useOnScreen';
 
 function App() {
-    const element = useRef();
-    const isVisible = useOnScreen(element);
+    const keyA = useKeyPress('a');
+    const keyB = useKeyPress('b');
 
     useEffect(() => {
-        console.log(isVisible);
-    }, [isVisible]);
+        if (keyA) {
+            // alguma coisa
+        }
+    }, [keyA]);
 
     return (
         <ThemeProvider>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div ref={element}>TreinaWeb</div>
+            {keyA && 'A'}
+            {keyB && 'B'}
         </ThemeProvider>
     );
 }
