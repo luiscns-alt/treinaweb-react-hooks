@@ -1,22 +1,16 @@
-import { useEffect } from 'react';
 import './App.css';
 
 import ThemeProvider from './data/ThemeProvider';
+import useWindowSize from './hooks/useWindowSize';
 
 function App() {
-    const keyA = useKeyPress('a');
-    const keyB = useKeyPress('b');
-
-    useEffect(() => {
-        if (keyA) {
-            // alguma coisa
-        }
-    }, [keyA]);
+    const windowSize = useWindowSize();
 
     return (
         <ThemeProvider>
-            {keyA && 'A'}
-            {keyB && 'B'}
+            Largura: {windowSize.width}
+            <br />
+            Altura: {windowSize.height}
         </ThemeProvider>
     );
 }
