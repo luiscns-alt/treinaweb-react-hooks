@@ -1,19 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 import ThemeProvider from './data/ThemeProvider';
-import useLocalStorage from './hooks/seLocalStorage';
-import useUndo from './hooks/useUndo';
+import useDebounce from './hooks/useDebounce';
 
 function App() {
-    const [counter, setCounter] = useState(0);
-    const prevValue = useUndo(counter);
+    const [text, setText] = useState('');
+    const myText = useDebounce(text, 1000);
+
+    useEffect(() => {
+        console.log(text);
+    }, [myText]);
 
     return (
         <ThemeProvider>
-            <button onClick={() => setCounter(counter + 1)}>{counter}</button>
-            <div>Valor Anterior: {prevValue}</div>
-            <button onClick={() => setCounter(prevValue)}>Voltar</button>
+            <input
+                onChange={(event) => setText(event.target.value)}
+                type='text'
+            />
+            <br />
+            <div>{myText}</div>
         </ThemeProvider>
     );
 }
