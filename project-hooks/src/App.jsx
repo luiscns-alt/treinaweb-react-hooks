@@ -1,25 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import './App.css';
 
 import ThemeProvider from './data/ThemeProvider';
-import useDebounce from './hooks/useDebounce';
+import useOnScreen from './hooks/useOnScreen';
 
 function App() {
-    const [text, setText] = useState('');
-    const myText = useDebounce(text, 1000);
+    const element = useRef();
+    const isVisible = useOnScreen(element);
 
     useEffect(() => {
-        console.log(text);
-    }, [myText]);
+        console.log(isVisible);
+    }, [isVisible]);
 
     return (
         <ThemeProvider>
-            <input
-                onChange={(event) => setText(event.target.value)}
-                type='text'
-            />
             <br />
-            <div>{myText}</div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div ref={element}>TreinaWeb</div>
         </ThemeProvider>
     );
 }
